@@ -34,7 +34,8 @@ switch ops.initialize
         %             dWU = alignWU(dWU);
     otherwise
         initialize_waves0;
-        ipck = randperm(size(Winit,2), Nfilt);
+        %ipck = randperm(size(Winit,2), Nfilt);
+        ipck = randperm(Nfilt, Nfilt);
         W = [];
         U = [];
         for i = 1:Nrank
