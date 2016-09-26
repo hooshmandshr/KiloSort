@@ -43,19 +43,19 @@ fW = conj(fW);
 rez.fW = fW;
 
 
-cid = rez.init_clusterid;
-spt = rez.init_spiketime;
-nspikes = zeros(Nfilt, Nbatch);
-for ibatch = 1:Nbatch
-    from = 1 + (ibatch-1)*NT;
-    to = ibatch*NT;
-    
-    idx = (spt >= from) & (spt < to); 
-    for k = 1:max(cid)
-        nspikes(k, ibatch) = sum(cid(idx)==k);
-    end
-end
-rez.nspikes = nspikes;
+% cid = rez.init_clusterid;
+% spt = rez.init_spiketime;
+% nspikes = zeros(Nfilt, Nbatch);
+% for ibatch = 1:Nbatch
+%     from = 1 + (ibatch-1)*NT;
+%     to = ibatch*NT;
+%     
+%     idx = (spt >= from) & (spt < to); 
+%     for k = 1:max(cid)
+%         nspikes(k, ibatch) = sum(cid(idx)==k);
+%     end
+% end
+% rez.nspikes = nspikes;
 
 end
 

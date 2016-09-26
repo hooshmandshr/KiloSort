@@ -1,4 +1,4 @@
-function [ spt, cluster_id ] = kilosortDeconvolution( recording, templates, spiketimes, cluster_id, ops )
+function [ spt, cluster_id ] = kilosortDeconvolution( recording, templates, ops )
 %KILOSORTDECONVOLUTION Summary of this function goes here
 %   INPUT:
 %       recording: C x T matrix
@@ -13,14 +13,14 @@ function [ spt, cluster_id ] = kilosortDeconvolution( recording, templates, spik
 C = size(recording, 1);
 ops.NchanTOT = C;
 ops.Nchan = C;
-ops.Nfilt = max(cluster_id);
+ops.Nfilt = size(templates, 3);
 
 %% convert recording in mat
 output_file = strcat(ops.temp_path, '\temp_bin.dat');
 fid = fopen(output_file, 'w');
 %%recording = int16([recording; zeros(2, size(recording, 2))]*(10^4));
 recording = int16(recording*(ops.scaleproc));
-fwrite(fid, recording','*int16');
+fwrite(fid, recording,'*int16');
 fclose(fid);
 clear fid rec_file
 
@@ -59,8 +59,8 @@ end
 %
 [rez, DATA, uproj] = preprocessData(ops); % preprocess data and extract spikes for initialization
 rez.init_templates = templates;
-rez.init_clusterid = cluster_id;
-rez.init_spiketime = spiketimes;
+%rez.init_clusterid = cluster_id;
+%rez.init_spiketime = spiketimes;
 rez                = setTemplates(rez);  % fit templates iteratively
 rez                = fullMPMU(rez, DATA);% extract final spike times (overlapping extraction)
 
