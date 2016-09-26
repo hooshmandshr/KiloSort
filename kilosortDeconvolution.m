@@ -37,6 +37,7 @@ kcoords   = ones(Nchannels,1); % grouping of channels (i.e. tetrode groups)
 fs = ops.fs; % sampling frequency
 save(strcat(ops.temp_path, '\chanMap.mat'), ...
     'chanMap','connected', 'xcoords', 'ycoords', 'kcoords', 'chanMap0ind', 'fs')
+ops.chanMap = strcat(ops.temp_path, '\chanMap.mat');
 
 clear Nchannels connected chanMap chanMap0ind xcoords ycoords kcoords fs
 

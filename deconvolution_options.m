@@ -19,7 +19,7 @@ ops.nSkipCov            = 1; % compute whitening matrix from every N-th batch (1
 ops.whiteningRange      = 32; % how many channels to whiten together (Inf for whole probe whitening, should be fine if Nchan<=32)		
 		
 % define the channel map as a filename (string) or simply an array		
-ops.chanMap             = 'C:\Users\Hooshmand\Documents\MATLAB\spikesorting-data\kilosort\chanMap.mat'; % make this file using createChannelMapFile.m		
+%ops.chanMap             = 'C:\Users\Hooshmand\Documents\MATLAB\spikesorting-data\kilosort\chanMap.mat'; % make this file using createChannelMapFile.m		
 ops.criterionNoiseChannels = 0.2; % fraction of "noise" templates allowed to span all channel groups (see createChannelMapFile for more info). 		
 % ops.chanMap = 1:ops.Nchan; % treated as linear probe if a chanMap file		
 		
