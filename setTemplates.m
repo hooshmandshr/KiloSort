@@ -27,7 +27,7 @@ dWU = zeros(nt0, Nchan, Nfilt);
 lws = ceil(nt0/2)-1;
 %right window size
 rws = floor(nt0/2);
-middle = floor(size(rez.init_templates, 1)/2);
+middle = ceil(size(rez.init_templates, 1)/2);
 dWU = single(rez.init_templates(middle-lws:middle+rws, :, :));
 % for k = 1:size(dWU, 3)
 %     dWU(:, :, k) = (fliplr(dWU(:, :, k)'))';

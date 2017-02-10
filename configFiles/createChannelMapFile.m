@@ -1,6 +1,6 @@
 %  create a channel map file
 
-Nchannels = 32;
+Nchannels = 512;
 connected = true(Nchannels, 1);
 chanMap   = 1:Nchannels;
 chanMap0ind = chanMap - 1;

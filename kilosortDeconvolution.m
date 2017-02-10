@@ -66,7 +66,7 @@ rez                = setTemplates(rez);  % fit templates iteratively
 rez                = fullMPMU(rez, DATA);% extract final spike times (overlapping extraction)
 
 % remove temporary file
-delete(ops.fproc);
+%delete(ops.fproc);
 %%
 
 spt = rez.st3(:, 1);

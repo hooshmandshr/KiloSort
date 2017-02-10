@@ -3,10 +3,10 @@ ops.parfor              = 0; % whether to use parfor to accelerate some parts of
 ops.verbose             = 1; % whether to print command line progress		
 ops.showfigures         = 1; % whether to plot figures during optimization		
 
-ops.temp_path           = 'C:\Users\Hooshmand\Documents\MATLAB\spikesorting-data\kilosort';
+ops.temp_path           = 'D:\Google Drive\github\KiloSort\temp_folder\';
 ops.datatype            = 'dat';  % binary ('dat', 'bin') or 'openEphys'		
 		
-ops.fs                  = 30000;        % sampling rate		(omit if already in chanMap file)
+ops.fs                  = 20000;        % sampling rate		(omit if already in chanMap file)
 %ops.NchanTOT            = 32;           % total number of channels (omit if already in chanMap file)
 %ops.Nchan               = 32;           % number of active channels (omit if already in chanMap file)
 %ops.Nfilt               = 64;           % number of clusters to use (2-4 times more than Nchan, should be a multiple of 32)     		
@@ -20,7 +20,7 @@ ops.whiteningRange      = 32; % how many channels to whiten together (Inf for wh
 		
 % define the channel map as a filename (string) or simply an array		
 %ops.chanMap             = 'C:\Users\Hooshmand\Documents\MATLAB\spikesorting-data\kilosort\chanMap.mat'; % make this file using createChannelMapFile.m		
-ops.criterionNoiseChannels = 0.2; % fraction of "noise" templates allowed to span all channel groups (see createChannelMapFile for more info). 		
+%ops.criterionNoiseChannels = 0.2; % fraction of "noise" templates allowed to span all channel groups (see createChannelMapFile for more info). 		
 % ops.chanMap = 1:ops.Nchan; % treated as linear probe if a chanMap file		
 		
 % other options for controlling the model and optimization		
@@ -38,7 +38,7 @@ ops.NT                  = 32*1024+ ops.ntbuff;% this is the batch size (try decr
 % when multiple values are provided for an option, the first two are beginning and ending anneal values, 		
 % the third is the value used in the final pass. 		
 ops.Th               = [4 10 10];    % threshold for detecting spikes on template-filtered data ([6 12 12])		
-ops.lam              = [5 20 20];   % large means amplitudes are forced around the mean ([10 30 30])		
+ops.lam              = [5 25 30];   % large means amplitudes are forced around the mean ([10 30 30])		
 ops.nannealpasses    = 4;            % should be less than nfullpasses (4)		
 ops.momentum         = 1./[20 400];  % start with high momentum and anneal (1./[20 1000])		
 ops.shuffle_clusters = 1;            % allow merges and splits during optimization (1)		

@@ -55,6 +55,7 @@ switch ops.initialize
         WUinit = dWU;
 end
 [W, U, mu, UtU, nu] = decompose_dWU(ops, dWU, Nrank, rez.ops.kcoords);
+
 W0 = W;
 W0(NT, 1) = 0;
 fW = fft(W0, [], 1);

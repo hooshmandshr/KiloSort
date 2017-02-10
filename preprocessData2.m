@@ -1,6 +1,7 @@
 function [rez, DATA, uproj] = preprocessData(ops)
 tic;
 uproj = [];
+ops.nt0 	= getOr(ops, {'nt0'}, 61);
 
 
 if strcmp(ops.datatype , 'openEphys')
@@ -125,7 +126,6 @@ while 1
     nsampcurr = size(buff,2);
     if nsampcurr<NTbuff
         buff(:, nsampcurr+1:NTbuff) = repmat(buff(:,nsampcurr), 1, NTbuff-nsampcurr);
-%        buff(:, nsampcurr+1:NTbuff) = repmat(zeros(size(buff,1),1), 1, NTbuff-nsampcurr);
     end
     if ops.GPU
         dataRAW = gpuArray(buff);
@@ -136,11 +136,10 @@ while 1
     dataRAW = single(dataRAW);
     dataRAW = dataRAW(:, chanMapConn);
     
-%     datr = filter(b1, a1, dataRAW);
-%     datr = flipud(datr);
-%     datr = filter(b1, a1, datr);
-%     datr = flipud(datr);
-    datr = dataRAW;
+    datr = filter(b1, a1, dataRAW);
+    datr = flipud(datr);
+    datr = filter(b1, a1, datr);
+    datr = flipud(datr);
     
     switch ops.whitening
         case 'noSpikes'
@@ -156,9 +155,6 @@ while 1
     end
     
     if ibatch<=Nbatch_buff
-%         if ibatch == (Nbatch_buff)
-%             disp('dd');
-%         end
         DATA(:,:,ibatch) = gather_try(int16( datr(ioffset + (1:NT),:)));
         isproc(ibatch) = 1;
     end
@@ -245,7 +241,7 @@ for ibatch = 1:Nbatch
         datr = datr(ioffset + (1:NT),:);
     end
     
-    %datr    = datr * Wrot;
+    datr    = datr * Wrot;
     
     if ops.GPU
         dataRAW = gpuArray(datr);
@@ -299,4 +295,3 @@ end
 
 rez.temp.Nbatch = Nbatch;
 rez.temp.Nbatch_buff = Nbatch_buff;
-

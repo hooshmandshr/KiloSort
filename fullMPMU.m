@@ -118,7 +118,7 @@ LAM = lam .* (20./mu).^2;
 NT = ops.NT;
 batchstart = 0:NT:NT*(Nbatch-Nbatch_buff);
 
-for ibatch = 1:Nbatch    
+for ibatch = 1:Nbatch  
     if ibatch>Nbatch_buff
         offset = 2 * ops.Nchan*batchstart(ibatch-Nbatch_buff); % - ioffset;
         fseek(fid, offset, 'bof');
@@ -192,7 +192,7 @@ for ibatch = 1:Nbatch
             double(id)+1, double(x), ibatch*ones(numel(x),1));
         st3             = cat(1, st3, STT);
     end
-    if rem(ibatch,100)==1
+    if (rem(ibatch,100)==1) || (ibatch==Nbatch)
 %         nsort = sort(sum(nspikes2,2), 'descend');
         fprintf(repmat('\b', 1, numel(msg)));
         msg             = sprintf('Time %2.2f, batch %d/%d,  NTOT %d\n', ...

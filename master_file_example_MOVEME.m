@@ -1,9 +1,9 @@
 % default options are in parenthesis after the comment
 
-addpath(genpath('C:\Users\Hooshmand\Documents\GitHub\KiloSort')) % path to kilosort folder
+addpath(genpath('D:\Google Drive\github\KiloSort')) % path to kilosort folder
 %addpath(genpath('D:\CODE\GitHub\npy-matlab')) % path to npy-matlab scripts
 
-pathToYourConfigFile = 'C:\Users\Hooshmand\Documents\GitHub\KiloSort\configFiles'; % take from Github folder and put it somewhere else (together with the master_file)
+pathToYourConfigFile = 'D:\Google Drive\github\KiloSort\configFiles'; % take from Github folder and put it somewhere else (together with the master_file)
 run(fullfile(pathToYourConfigFile, 'StandardConfig_MOVEME.m'))
 
 tic; % start timer
