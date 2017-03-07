@@ -131,8 +131,8 @@ for ibatch = 1:Nbatch
     else
         dataRAW = dat;
     end
-    dataRAW = single(dataRAW);
-    dataRAW = dataRAW / ops.scaleproc;
+    %dataRAW = single(dataRAW);
+    %dataRAW = dataRAW / ops.scaleproc;
     
     % project data in low-dim space
     if ops.GPU
@@ -202,9 +202,14 @@ for ibatch = 1:Nbatch
     end
 end
 %%
+% if numel(st3) > 0
+%     [~, isort]      = sort(st3(:,1), 'ascend');
+%     st3             = st3(isort,:);
+% else
+%     st3 = [0 0];
+% end
 [~, isort]      = sort(st3(:,1), 'ascend');
 st3             = st3(isort,:);
-
 rez.st3         = st3;
 if ~isempty(ops.nNeighPC)
     % re-sort coefficients for projections
@@ -259,15 +264,15 @@ if Nbatch_buff<Nbatch
     fclose(fid);
 end
 
-% center the templates
-rez.W               = cat(1, zeros(nt0 - (ops.nt0-1-ops.nt0min), Nfilt, Nrank), rez.W);
-rez.WrotInv         = (rez.Wrot/200)^-1;
-%%
-Urot = U;
-for k = 1:size(U,3)
-   Urot(:,:,k)  = rez.WrotInv' * Urot(:,:,k);
-end
-for n = 1:size(U,2)
-    rez.Wraw(:,:,n) = mu(n) * sq(Urot(:,n,:)) * sq(rez.W(:,n,:))';
-end
+% % center the templates
+% rez.W               = cat(1, zeros(nt0 - (ops.nt0-1-ops.nt0min), Nfilt, Nrank), rez.W);
+% rez.WrotInv         = (rez.Wrot/200)^-1;
+% %%
+% Urot = U;
+% for k = 1:size(U,3)
+%    Urot(:,:,k)  = rez.WrotInv' * Urot(:,:,k);
+% end
+% for n = 1:size(U,2)
+%     rez.Wraw(:,:,n) = mu(n) * sq(Urot(:,n,:)) * sq(rez.W(:,n,:))';
+% end
 %

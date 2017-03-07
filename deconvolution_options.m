@@ -30,15 +30,14 @@ ops.maxFR               = 20000;  % maximum number of spikes to extract per batc
 ops.fshigh              = 300;   % frequency for high pass filtering		
 % ops.fslow             = 2000;   % frequency for low pass filtering (optional)
 ops.ntbuff              = 64;    % samples of symmetrical buffer for whitening and spike detection		
-ops.scaleproc           = 2000;   % int16 scaling of whitened data		
+ops.scaleproc           = 200;   % int16 scaling of whitened data		
 ops.NT                  = 32*1024+ ops.ntbuff;% this is the batch size (try decreasing if out of memory) 		
 % for GPU should be multiple of 32 + ntbuff		
 		
 % the following options can improve/deteriorate results. 		
 % when multiple values are provided for an option, the first two are beginning and ending anneal values, 		
 % the third is the value used in the final pass. 		
-ops.Th               = [4 10 10];    % threshold for detecting spikes on template-filtered data ([6 12 12])		
-ops.lam              = [5 25 30];   % large means amplitudes are forced around the mean ([10 30 30])		
+ops.lam              = [5 25 60];   % large means amplitudes are forced around the mean ([10 30 30])		
 ops.nannealpasses    = 4;            % should be less than nfullpasses (4)		
 ops.momentum         = 1./[20 400];  % start with high momentum and anneal (1./[20 1000])		
 ops.shuffle_clusters = 1;            % allow merges and splits during optimization (1)		
