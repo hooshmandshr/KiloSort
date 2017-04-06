@@ -1,6 +1,6 @@
 ops.GPU                 = 0; % whether to run this code on an Nvidia GPU (much faster, mexGPUall first)		
 ops.parfor              = 0; % whether to use parfor to accelerate some parts of the algorithm		
-ops.verbose             = 1; % whether to print command line progress		
+ops.verbose             = 0; % whether to print command line progress		
 ops.showfigures         = 1; % whether to plot figures during optimization		
 
 ops.temp_path           = 'D:\Google Drive\github\KiloSort\temp_folder\';
@@ -37,7 +37,8 @@ ops.NT                  = 32*1024+ ops.ntbuff;% this is the batch size (try decr
 % the following options can improve/deteriorate results. 		
 % when multiple values are provided for an option, the first two are beginning and ending anneal values, 		
 % the third is the value used in the final pass. 		
-ops.lam              = [5 25 60];   % large means amplitudes are forced around the mean ([10 30 30])		
+ops.Th               = [4 10 6];    % threshold for detecting spikes on template-filtered data ([6 12 12])		
+ops.lam              = [5 25 20];   % large means amplitudes are forced around the mean ([10 30 30])		
 ops.nannealpasses    = 4;            % should be less than nfullpasses (4)		
 ops.momentum         = 1./[20 400];  % start with high momentum and anneal (1./[20 1000])		
 ops.shuffle_clusters = 1;            % allow merges and splits during optimization (1)		

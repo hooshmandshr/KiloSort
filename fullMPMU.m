@@ -71,7 +71,7 @@ end
 if Nbatch_buff<Nbatch
     fid = fopen(ops.fproc, 'r');
 end
-msg = [];
+%msg = [];
 
 if ~isempty(ops.nNeigh)
     nNeigh    = ops.nNeigh;
@@ -194,10 +194,10 @@ for ibatch = 1:Nbatch
     end
     if (rem(ibatch,100)==1) || (ibatch==Nbatch)
 %         nsort = sort(sum(nspikes2,2), 'descend');
-        fprintf(repmat('\b', 1, numel(msg)));
-        msg             = sprintf('Time %2.2f, batch %d/%d,  NTOT %d\n', ...
-            toc, ibatch,Nbatch, size(st3,1));        
-        fprintf(msg);
+%         fprintf(repmat('\b', 1, numel(msg)));
+%         msg             = sprintf('Time %2.2f, batch %d/%d,  NTOT %d\n', ...
+%             toc, ibatch,Nbatch, size(st3,1));        
+%         fprintf(msg);
         
     end
 end
